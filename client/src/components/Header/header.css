@@ -1,0 +1,7 @@
+.MuiAppBar-root {
+    box-shadow: none !important;
+}
+
+.MuiAlert-message {
+    overflow: hidden !important;
+}
