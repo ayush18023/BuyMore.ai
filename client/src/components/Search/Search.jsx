@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './search.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { getProducts } from '../../redux/actions/productActions';
+import { getProducts, processInput } from '../../redux/actions/productActions';
 const SearchContainer = styled(Box)(({ theme }) => ({
     background: '#fff',
     width: '70.8%',
@@ -47,8 +47,8 @@ const Search = () => {
     const keyHandler=async(e)=>{
         if(e.key==='Enter'){
             console.log('hello');
+            dispatch(processInput())
         }
-        const { data } = await axios.post(BACKEND_URL+"/queryProcessor")
     }
     return (
         <SearchContainer >
