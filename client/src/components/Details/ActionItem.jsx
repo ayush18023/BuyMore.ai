@@ -95,13 +95,13 @@ const ActionItem = ({ product }) => {
                 <AlertTitle>Login to Place Order</AlertTitle>
             </Notification> : <></>}
             <Left>
-                <Box style={{ padding: '15px 20px', border: '1px solid #f0f0f0', width: '90%', textAlign: 'center' }}>
-                    <Image src={product?.detailUrl}></Image>
+                <Box style={{ padding: '15px 20px', border: '1px solid #f0f0f0', height:"500px", textAlign: 'center' }}>
+                    <Image src={product?.image_url}></Image>
                 </Box>
                 {ok ? <StyledButton variant='contained' style={{ marginRight: 10, background: '#ff9f00', marginLeft: 10 }} onClick={() => addItemToCart()}><Cart />Add to Cart</StyledButton> :
                     <StyledButton variant='contained' style={{ marginRight: 10, background: '#ff9f00', marginLeft: 10 }} onClick={() => goToCart()}><Cart />Go to Cart</StyledButton>
                 }
-                <StyledButton variant='contained' style={{ background: '#fb541b' }} onClick={() => buyItems(product.price.cost)}><Flash />Buy Now</StyledButton>
+                <StyledButton variant='contained' style={{ background: '#fb541b' }} onClick={() => buyItems(product.discountedPrice)}><Flash />Buy Now</StyledButton>
             </Left >
         </>
     )

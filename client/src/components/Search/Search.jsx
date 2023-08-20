@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { InputBase, Box, styled, ListItem, List } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, useSelector } from 'react-redux'
 import './search.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getProducts } from '../../redux/actions/productActions';
+import { ProductContext } from '../../context/DataProvider';
+import axios from 'axios';
 const SearchContainer = styled(Box)(({ theme }) => ({
     background: '#fff',
     width: '70.8%',
@@ -34,7 +36,9 @@ const SearchIconWrapper = styled(Box)`
 const Search = () => {
     const [text, setText] = useState('')
     const dispatch = useDispatch()
+    const {arr,setArr}=useContext(ProductContext);
     const { products } = useSelector(state => state.getProducts)
+    const nav=useNavigate();
     const changeHandler = (e) => {
         setText(e.target.value)
     }
@@ -46,9 +50,19 @@ const Search = () => {
     }
     const keyHandler=async(e)=>{
         if(e.key==='Enter'){
-            console.log('hello');
+            console.log("here");
+            try{
+                const { data } = await axios.post("http://127.0.0.1:5000"+"/queryProcessor",{query:text});
+                setText('');
+                console.log(data.data);
+                setArr(data.data);
+                console.log(arr);
+                nav('/filter')
+            }
+            catch(err){
+                console.log(err);
+            }
         }
-        const { data } = await axios.post(BACKEND_URL+"/queryProcessor")
     }
     return (
         <SearchContainer >

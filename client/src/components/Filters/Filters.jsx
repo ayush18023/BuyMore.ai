@@ -7,15 +7,13 @@ import { useParams } from 'react-router-dom'
 import RangeSlider from './RangeSlider'
 import BasicTabs from './Tabs'
 import axios from 'axios'
-import { DataContext } from '../../context/DataProvider'
+import { DataContext, ProductContext } from '../../context/DataProvider'
 
 const Filters = () => {
     const [values, setValues] = useState([500, 30000])
     const [rate, setRate] = useState([])
-    const { name } = useParams()
     const { account,setAccount } = useContext(DataContext)
-    let products = useSelector(state => state.getProducts)
-    products = products.products
+    let {arr:products}=useContext(ProductContext);
     // console.log(products)
     useEffect(()=>{
         const req=async()=>{
@@ -45,24 +43,7 @@ const Filters = () => {
 
         })
     }
-    let filteredProducts = []
-    for (let i = 0; i < products.length; i++) {
-        if ((products[i].category === name.toLowerCase()) && (products[i].price.mrp >= values[0] && products[i].price.mrp <= values[1])) {
-            if (rate.length === 0) {
-                filteredProducts.push(products[i])
-                continue
-            }
-            else {
-                for (let j = 0; j < rate.length; j++) {
-                    if (products[i].rating >= rate[j]) {
-                        filteredProducts.push(products[i])
-                        break
-                    }
-                }
-            }
-        }
-    }
-    // console.log(filteredProducts)
+    console.log(products);
     return (
         <Box style={{ height: 'calc(100vh - 55px)', boxSizing: 'border-box', padding: '15px', display: 'flex', justifyContent: 'space-between' }}>
             <Box style={{ backgroundColor: 'white', height: '100%', width: '17%' }}>
@@ -93,7 +74,7 @@ const Filters = () => {
             <Box style={{ backgroundColor: 'white', minHeight: '100%', width: 'calc(82%)', height: 'fit-content' }}>
                 <Box style={{ display: 'flex', width: '100%' }}>
                     <Box style={{ width: '100%' }}>
-                        <BasicTabs filteredProducts={filteredProducts} />
+                        <BasicTabs filteredProducts={products} />
                     </Box>
                 </Box>
             </Box>

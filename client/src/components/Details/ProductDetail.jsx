@@ -23,6 +23,8 @@ const ColumnText = styled(TableRow)`
     }
 `
 const ProductDetail = ({ product }) => {
+    const inputString = product?.productDescriptors?.description?.value;
+    const strippedString = inputString.replace(/<[^>]*>/g, '');
     const date = new Date(new Date().getTime() + 3 * 14 * 60 * 60 * 1000)
     return (
         <>
@@ -53,7 +55,7 @@ const ProductDetail = ({ product }) => {
                     </ColumnText>
                     <ColumnText>
                         <TableCell style={{ color: '#878787' }}>Description</TableCell>
-                        <TableCell style={{}}>{product?.description}</TableCell>
+                        <TableCell style={{}}>{strippedString}</TableCell>
                     </ColumnText>
                 </TableBody>
             </Table>
