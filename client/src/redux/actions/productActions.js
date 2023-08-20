@@ -20,3 +20,13 @@ export const getProductDetails = (id) => async (dispatch) => {
         dispatch({ type: GET_PRODUCT_DETAILS_FAIL, payload: err.message })
     }
 }
+export const processInput = (id) => async (dispatch,payload) => {
+    try {
+        dispatch({ type: GET_PRODUCT_DETAILS_REQUEST });
+        const { data } = await axios.post(URL+"/queryProcessor",{"query":payload})
+        dispatch({ type: GET_PRODUCT_DETAILS_SUCCESS, payload: data })
+    }
+    catch (err) {
+        dispatch({ type: GET_PRODUCT_DETAILS_FAIL, payload: err.message })
+    }
+}
