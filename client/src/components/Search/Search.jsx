@@ -48,6 +48,7 @@ const Search = () => {
         if(e.key==='Enter'){
             console.log('hello');
         }
+        const { data } = await axios.post(BACKEND_URL+"/queryProcessor")
     }
     return (
         <SearchContainer >

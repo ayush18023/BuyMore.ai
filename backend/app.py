@@ -62,8 +62,8 @@ def connectMongo():
 #     return response_data
 
 
-@app.route("/vecStore",methods=["POST"])
-def vecStore():
+@app.route("/queryProcessor",methods=["POST"])
+def queryProcessor():
     all_ids = vectorSearch(inputQuery=request.json.get("query"))
     col = connectMongo()
     complete_data=[]
