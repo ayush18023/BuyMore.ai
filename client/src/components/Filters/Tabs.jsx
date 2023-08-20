@@ -81,18 +81,18 @@ export default function BasicTabs({ filteredProducts }) {
                                 }
                                 return (
                                     <div style={{ display: 'flex', flexDirection: 'column', width: '20%', padding: '16px', marginLeft: `${mar}` }} className='effect' onClick={() => clickHandler(product.id)}>
-                                        <div style={{ textAlign: 'center' }}><img src={product.url} style={{ height: '280px', width: 'auto' }}></img></div>
+                                        <div style={{ textAlign: 'center' }}><img src={product?.image_url} style={{ height: '280px', width: 'auto' }}></img></div>
                                         <div>
-                                            <p style={{ margin: '0', padding: '0', fontSize: '14px', paddingBottom: '5px' }}>{product.title.longTitle}</p>
-                                            <p style={{ margin: '0', padding: '0', fontSize: '12px', paddingBottom: '5px', color: '#878787', wordWrap: 'break-word' }}>{product.tagline}</p>
+                                            <p style={{ margin: '0', padding: '0', fontSize: '14px', paddingBottom: '5px' }}>{product?.productDisplayName}</p>
+                                            <p style={{ margin: '0', padding: '0', fontSize: '12px', paddingBottom: '5px', color: '#878787', wordWrap: 'break-word' }}>{product?.displayCategories}</p>
                                             <div style={{ display: 'flex', paddingBottom: '5px' }}>
-                                                <p style={{ margin: '0', padding: '2px 4px 2px 6px', fontSize: '12px', color: 'white', background: "#388e3c" }}>{product?.rating}★</p>
-                                                <p style={{ margin: '0', padding: '0', paddingLeft: '8px', fontSize: '14px', color: '#878787' }}>({product?.review})</p>
+                                                <p style={{ margin: '0', padding: '2px 4px 2px 6px', fontSize: '12px', color: 'white', background: "#388e3c" }}>{product?.myntraRating}★</p>
+                                                <p style={{ margin: '0', padding: '0', paddingLeft: '8px', fontSize: '14px', color: '#878787' }}>(400)</p>
                                             </div>
                                             <div style={{ paddingBottom: '5px' }}>
-                                                <div style={{ margin: ' 0', padding: '0', fontSize: '1rem', color: '#212121', display: 'inline-block' }}>₹{product?.price?.cost}</div>&nbsp;&nbsp;&nbsp;
-                                                <div style={{ margin: ' 0', padding: '0', fontSize: '14px', color: '#878787', display: 'inline-block' }}><strike>₹{product?.price?.mrp}</strike></div>&nbsp;&nbsp;&nbsp;
-                                                <div style={{ margin: ' 0', padding: '0', fontSize: '13px', color: '#388e3c', display: 'inline-block' }}>{product?.price?.discount} off</div>
+                                                <div style={{ margin: ' 0', padding: '0', fontSize: '1rem', color: '#212121', display: 'inline-block' }}>₹{product?.price}</div>&nbsp;&nbsp;&nbsp;
+                                                <div style={{ margin: ' 0', padding: '0', fontSize: '14px', color: '#878787', display: 'inline-block' }}><strike>₹{product?.discountedPrice}</strike></div>&nbsp;&nbsp;&nbsp;
+                                                <div style={{ margin: ' 0', padding: '0', fontSize: '13px', color: '#388e3c', display: 'inline-block' }}>₹{product?.price-product?.discountedPrice} off</div>
                                             </div>
                                             <p style={{ margin: '0', padding: '0', fontSize: '12px' }}>Free delivery</p>
                                         </div>
@@ -118,18 +118,18 @@ export default function BasicTabs({ filteredProducts }) {
                                 }
                                 return (
                                     <div style={{ display: 'flex', flexDirection: 'column', width: '20%', padding: '16px', marginLeft: `${mar}` }} className='effect' onClick={() => clickHandler(product.id)}>
-                                        <div style={{ textAlign: 'center' }}><img src={product.url} style={{ height: '280px', width: 'auto' }}></img></div>
+                                        <div style={{ textAlign: 'center' }}><img src={product?.image_url} style={{ height: '280px', width: 'auto' }}></img></div>
                                         <div>
-                                            <p style={{ margin: '0', padding: '0', fontSize: '14px', paddingBottom: '5px' }}>{product.title.longTitle}</p>
-                                            <p style={{ margin: '0', padding: '0', fontSize: '12px', paddingBottom: '5px', color: '#878787', wordWrap: 'break-word' }}>{product.tagline}</p>
+                                            <p style={{ margin: '0', padding: '0', fontSize: '14px', paddingBottom: '5px' }}>{product?.productDisplayName}</p>
+                                            <p style={{ margin: '0', padding: '0', fontSize: '12px', paddingBottom: '5px', color: '#878787', wordWrap: 'break-word' }}>{product?.displayCategories}</p>
                                             <div style={{ display: 'flex', paddingBottom: '5px' }}>
-                                                <p style={{ margin: '0', padding: '2px 4px 2px 6px', fontSize: '12px', color: 'white', background: "#388e3c" }}>{product?.rating}★</p>
-                                                <p style={{ margin: '0', padding: '0', paddingLeft: '8px', fontSize: '14px', color: '#878787' }}>({product?.review})</p>
+                                                <p style={{ margin: '0', padding: '2px 4px 2px 6px', fontSize: '12px', color: 'white', background: "#388e3c" }}>{product?.myntraRating}★</p>
+                                                <p style={{ margin: '0', padding: '0', paddingLeft: '8px', fontSize: '14px', color: '#878787' }}>(400)</p>
                                             </div>
                                             <div style={{ paddingBottom: '5px' }}>
-                                                <div style={{ margin: ' 0', padding: '0', fontSize: '1rem', color: '#212121', display: 'inline-block' }}>₹{product?.price?.cost}</div>&nbsp;&nbsp;&nbsp;
-                                                <div style={{ margin: ' 0', padding: '0', fontSize: '14px', color: '#878787', display: 'inline-block' }}><strike>₹{product?.price?.mrp}</strike></div>&nbsp;&nbsp;&nbsp;
-                                                <div style={{ margin: ' 0', padding: '0', fontSize: '13px', color: '#388e3c', display: 'inline-block' }}>{product?.price?.discount} off</div>
+                                                <div style={{ margin: ' 0', padding: '0', fontSize: '1rem', color: '#212121', display: 'inline-block' }}>₹{product?.price}</div>&nbsp;&nbsp;&nbsp;
+                                                <div style={{ margin: ' 0', padding: '0', fontSize: '14px', color: '#878787', display: 'inline-block' }}><strike>₹{product?.discountedPrice}</strike></div>&nbsp;&nbsp;&nbsp;
+                                                <div style={{ margin: ' 0', padding: '0', fontSize: '13px', color: '#388e3c', display: 'inline-block' }}>₹{product?.price-product?.discountedPrice} off</div>
                                             </div>
                                             <p style={{ margin: '0', padding: '0', fontSize: '12px' }}>Free delivery</p>
                                         </div>

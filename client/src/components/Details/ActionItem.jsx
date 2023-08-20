@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { DataContext } from '../../context/DataProvider'
 import { payUsingPaytm } from '../../service/api'
 import { post } from '../../utils/paytm'
+import './details.css'
 const Left = styled(Box)(({ theme }) => ({
     minWidth: '40%',
     padding: '40px 0 0 80px',
@@ -35,7 +36,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const Image = styled('img')(({ theme }) => ({
     [theme.breakpoints.down('sm')]: {
         padding: '0px',
-        width: '100%'
+        width: '100%',
+        height:'500px !important'
     }
 
 }))
@@ -95,13 +97,13 @@ const ActionItem = ({ product }) => {
                 <AlertTitle>Login to Place Order</AlertTitle>
             </Notification> : <></>}
             <Left>
-                <Box style={{ padding: '15px 20px', border: '1px solid #f0f0f0', width: '90%', textAlign: 'center' }}>
-                    <Image src={product?.detailUrl}></Image>
+                <Box style={{ padding: '15px 20px', border: '1px solid #f0f0f0', height:"500px", textAlign: 'center' }}>
+                    <Image src={product?.image_url}></Image>
                 </Box>
                 {ok ? <StyledButton variant='contained' style={{ marginRight: 10, background: '#ff9f00', marginLeft: 10 }} onClick={() => addItemToCart()}><Cart />Add to Cart</StyledButton> :
                     <StyledButton variant='contained' style={{ marginRight: 10, background: '#ff9f00', marginLeft: 10 }} onClick={() => goToCart()}><Cart />Go to Cart</StyledButton>
                 }
-                <StyledButton variant='contained' style={{ background: '#fb541b' }} onClick={() => buyItems(product.price.cost)}><Flash />Buy Now</StyledButton>
+                <StyledButton variant='contained' style={{ background: '#fb541b' }} onClick={() => buyItems(product.discountedPrice)}><Flash />Buy Now</StyledButton>
             </Left >
         </>
     )
