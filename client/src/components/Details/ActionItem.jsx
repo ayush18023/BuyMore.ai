@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { DataContext } from '../../context/DataProvider'
 import { payUsingPaytm } from '../../service/api'
 import { post } from '../../utils/paytm'
+import './details.css'
 const Left = styled(Box)(({ theme }) => ({
     minWidth: '40%',
     padding: '40px 0 0 80px',
@@ -35,7 +36,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const Image = styled('img')(({ theme }) => ({
     [theme.breakpoints.down('sm')]: {
         padding: '0px',
-        width: '100%'
+        width: '100%',
+        height:'500px !important'
     }
 
 }))
