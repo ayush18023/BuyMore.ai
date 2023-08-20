@@ -9,24 +9,24 @@ import pinecone
 import time
 from sentence_transformers import SentenceTransformer
 
-# model = SentenceTransformer('sentence-transformers/all-distilroberta-v1')
-# pinecone.init(api_key="01a99633-0c29-4ff8-a8f0-e713b8ccc63c", environment="us-west1-gcp-free")
-# index = pinecone.Index("grid-hax-final")
+model = SentenceTransformer('sentence-transformers/all-distilroberta-v1')
+pinecone.init(api_key="01a99633-0c29-4ff8-a8f0-e713b8ccc63c", environment="us-west1-gcp-free")
+index = pinecone.Index("grid-hax-final")
 
 app = Flask(__name__)
 
 
-# def vectorSearch(inputQuery, k=3):
-#     resultant_list = []
-#     qa_vector = model.encode(inputQuery).tolist()
-#     results = index.query(
-#       vector=qa_vector,
-#       top_k=k,
-#       include_values=True
-#     )
-#     for i in range(k):
-#         resultant_list.append(results['matches'][i]['id'])
-#     return resultant_list
+def vectorSearch(inputQuery, k=3):
+    resultant_list = []
+    qa_vector = model.encode(inputQuery).tolist()
+    results = index.query(
+      vector=qa_vector,
+      top_k=k,
+      include_values=True
+    )
+    for i in range(k):
+        resultant_list.append(results['matches'][i]['id'])
+    return resultant_list
 
 def connectMongo():
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -62,26 +62,20 @@ def connectMongo():
 #     return response_data
 
 
-# @app.route("/dbData",methods=["POST"])
-# def dbData():
-#     resp = ["saree","sherwani"]
-#     all_ids=[]
-#     print(resp)
-#     for tag in resp:
-#         ids = vectorSearch(inputQuery=tag)
-#         all_ids += ids  
-#     print(all_ids)
-#     col = connectMongo()
-#     complete_data=[]
-#     for id in all_ids:
-#         doc = col.find_one({"id":int(id)})
-#         # print(doc)
-#         doc.pop('_id')
-#         complete_data.append(doc)
-#     response_data = {
-#         "data": complete_data
-#     }
-#     return response_data
+@app.route("/vecStore",methods=["POST"])
+def vecStore():
+    all_ids = vectorSearch(inputQuery=request.json.get("query"))
+    col = connectMongo()
+    complete_data=[]
+    for id in all_ids:
+        doc = col.find_one({"id":int(id)})
+        # print(doc)
+        doc.pop('_id')
+        complete_data.append(doc)
+    response_data = {
+        "data": complete_data
+    }
+    return response_data
 
 
 @app.route("/byGender",methods=["POST"])
